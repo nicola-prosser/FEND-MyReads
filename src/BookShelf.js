@@ -1,4 +1,5 @@
 import React, { Component} from 'react'
+import { Link } from 'react-router-dom'
 
 import Books from './Books';
 
@@ -8,7 +9,6 @@ class BookShelf extends Component {
   render (){
 
     console.log(this.props.bookList);
-    
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -29,7 +29,8 @@ class BookShelf extends Component {
                         <li key={book.id}>
                           <Books
                             book={book}
-                            organiseBooks={this.props.organiseBooks}/>
+                            organiseBooks={this.props.organiseBooks}
+                            shelf = "currentlyReading"/>
                         </li>
                       ))
                   }
@@ -48,7 +49,10 @@ class BookShelf extends Component {
                       book => (
                         <li key={book.id}>
                           <Books
-                            book={book}/>
+                            book={book}
+                            organiseBooks={this.props.organiseBooks}
+                            shelf = "wantToRead"
+                            />
                         </li>
                       ))
                   }
@@ -67,7 +71,10 @@ class BookShelf extends Component {
                       book => (
                         <li key={book.id}>
                           <Books
-                            book={book}/>
+                            book={book}
+                            organiseBooks={this.props.organiseBooks}
+                            shelf = "read"
+                            />
                         </li>
                       ))
                   }
@@ -77,7 +84,9 @@ class BookShelf extends Component {
           </div>
         </div>
         <div className="open-search">
-          <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+          <Link
+          to='/search'>
+          Add a book</Link>
         </div>
       </div>
     );
