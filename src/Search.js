@@ -6,28 +6,35 @@ import { Link } from 'react-router-dom';
 class Search extends Component {
 
   state = {
+    //empty string ready to be updated with user input
     query: '',
+    //empty array set to return searched books
     searchResult:[]
   }
 
+  //state is updated to match input
+
   updateQuery = (query) => {
-    this.setState({
-      query: query
-    })
+    this.setState({ query: query })
     this.returnSearchResult(query)
   }
 
+  //return books that match the query or if there is no match empty string
   returnSearchResult = (query) => {
+    //if input is in progress
     if (query){
       BooksAPI.search(query).then((searchResult) => {
         if (searchResult.error){
+          //error empty the string
           this.setState({searchResult: []})
         }else{
+          //else display the books
           this.setState({ searchResult: searchResult })
         }
       })
+    //else a input is not in progress - display nothing
     } else {
-      this.setState({ searchResult: [] });
+      this.setState({ query: '', searchResult: [] });
     }
   }
 
@@ -41,6 +48,7 @@ class Search extends Component {
             to='/'>
             Close</Link>
           <div className="search-books-input-wrapper">
+      
             <input
               type="text"
               placeholder="Search by title or author"

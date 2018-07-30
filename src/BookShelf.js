@@ -7,8 +7,14 @@ import Books from './Books';
 
 class BookShelf extends Component {
   render (){
-
+    //render the three shelves for BookShelf
+    //checking props passed over succesfully
     console.log(this.props.bookList);
+
+    //for clarity - variable contains the props which will be filtered through
+    const booklist = this.props.bookList;
+
+    //JSX code returns the code for the three bookshelves and contains the code to build the book list elements. 
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -23,7 +29,8 @@ class BookShelf extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
 
-                  {this.props.bookList.filter(
+                  {booklist.filter(
+                    //filter through for books with shelf prop currently reading - build book entry for them
                     book => book.shelf === 'currentlyReading').map(
                       book => (
                         <li key={book.id}>
@@ -44,7 +51,8 @@ class BookShelf extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
 
-                  {this.props.bookList.filter(
+                  {booklist.filter(
+                    //filter + build for Want to Read
                     book => book.shelf === 'wantToRead').map(
                       book => (
                         <li key={book.id}>
@@ -66,7 +74,8 @@ class BookShelf extends Component {
               <div className="bookshelf-books">
                 <ol className="books-grid">
 
-                  {this.props.bookList.filter(
+                  {booklist.filter(
+                    //filter + build for Read
                     book => book.shelf === 'read').map(
                       book => (
                         <li key={book.id}>
